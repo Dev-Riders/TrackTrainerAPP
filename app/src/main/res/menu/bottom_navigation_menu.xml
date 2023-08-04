@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_ejercicios"
+        android:icon="@drawable/baseline_sports_gymnastics_24_black"
+        android:title="Ejercicios" />
+
+    <item android:id="@+id/nav_misiones"
+        android:icon="@drawable/baseline_star_24_black"
+        android:title="Misiones" />
+
+    <item android:id="@+id/nav_perfil"
+        android:icon="@drawable/baseline_person_24_black"
+        android:title="Perfil" />
+</menu>

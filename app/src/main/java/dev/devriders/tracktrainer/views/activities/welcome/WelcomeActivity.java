@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import dev.devriders.tracktrainer.R;
 import dev.devriders.tracktrainer.views.activities.welcome.auth.LoginActivity;
+import dev.devriders.tracktrainer.views.activities.welcome.auth.RegistroActivity;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -27,8 +28,8 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Aquí puedes iniciar la actividad de registro, por ejemplo:
-                // Intent intent = new Intent(WelcomeActivity.this, RegisterActivity.class);
-                // startActivity(intent);
+                Intent intent = new Intent(WelcomeActivity.this, RegistroActivity.class);
+                startActivity(intent);
             }
         });
 

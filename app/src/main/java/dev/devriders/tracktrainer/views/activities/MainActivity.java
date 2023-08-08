@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import dev.devriders.tracktrainer.R;
+import dev.devriders.tracktrainer.views.activities.welcome.WelcomeActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,6 +31,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean usuarioEstaLogueado() {
-        return true;
+        return false;
     }
 }

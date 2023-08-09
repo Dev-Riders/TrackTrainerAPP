@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONObject;
@@ -33,6 +34,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText etCorreo;
     private EditText etContraseña;
     private Button btnLogin;
+    private TextView textViewRegister;
+    private TextView textViewForgotPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +59,24 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+        TextView textViewRegister = findViewById(R.id.textViewRegister);
+        textViewRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RegistroActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        TextView textViewForgotPassword = findViewById(R.id.textViewForgotPassword);
+        textViewForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RecuperacionActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void performLogin(String correo, String contraseña) {
@@ -126,4 +147,5 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }
+
 }

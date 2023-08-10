@@ -14,4 +14,5 @@
     <string name="enviar_codigo">Enviar Código</string>
     <string name="nueva_contrasena_hint">Nueva Contraseña</string>
     <string name="cambiar_contrasena_button_text">Cambiar Contraseña</string>
+    <string name="cargando">Cargando...</string>
 </resources>

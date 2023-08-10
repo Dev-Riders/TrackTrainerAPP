@@ -3,8 +3,10 @@ package dev.devriders.tracktrainer.views.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 
 import dev.devriders.tracktrainer.R;
 import dev.devriders.tracktrainer.views.activities.welcome.WelcomeActivity;
@@ -21,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 if (usuarioEstaLogueado()) {
-                    startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                    startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
                 } else {
                     startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
                 }
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean usuarioEstaLogueado() {
-        return false;
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        return preferences.contains("token");
     }
 }

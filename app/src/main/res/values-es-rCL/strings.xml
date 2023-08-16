@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TrackTrainer</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="email_hint">Correo Electrónico</string>
+    <string name="password_hint">Contraseña</string>
+    <string name="login_button_text">Iniciar Sesión</string>
+    <string name="register_button_text">Registrarse</string>
+    <string name="no_tienes_cuenta_registrate">No tienes cuenta. Registrate!</string>
+    <string name="se_te_olvid_la_contrase_a">¿Se te olvidó la contraseña?</string>
+    <string name="recuperacion_email_hint">Introduce tu correo para recuperar contraseña</string>
+    <string name="solicitar_codigo">Solicitar Código</string>
+    <string name="introduce_codigo">Introduce el Código</string>
+    <string name="enviar_codigo">Enviar Código</string>
+    <string name="nueva_contrasena_hint">Nueva Contraseña</string>
+    <string name="cambiar_contrasena_button_text">Cambiar Contraseña</string>
+    <string name="cargando">Cargando...</string>
+</resources>

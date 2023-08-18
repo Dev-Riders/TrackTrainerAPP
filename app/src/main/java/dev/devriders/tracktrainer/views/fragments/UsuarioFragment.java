@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import dev.devriders.tracktrainer.R;
+import dev.devriders.tracktrainer.views.activities.usuario.PerfilActivity;
 import dev.devriders.tracktrainer.views.activities.welcome.WelcomeActivity;
 
 
@@ -42,9 +43,9 @@ public class UsuarioFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        // TODO: Ir a la pantalla del perfil
-                        // Intent intentProfile = new Intent(getContext(), ProfileActivity.class);
-                        // startActivity(intentProfile);
+
+                        Intent intentProfile = new Intent(getContext(), PerfilActivity.class);
+                        startActivity(intentProfile);
                         break;
                     case 1:
                         // TODO: Ir a la pantalla de términos y condiciones

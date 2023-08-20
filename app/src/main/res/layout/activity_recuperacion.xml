@@ -6,22 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".views.activities.welcome.auth.RecuperacionActivity">
 
-    <!-- Campo de texto para el Correo Electrónico -->
-    <EditText
-        android:id="@+id/editTextEmailRecuperacion"
+    <!-- TextInputLayout para el Correo Electrónico -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputEmailRecuperacion"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="200dp"
         android:layout_marginEnd="32dp"
-        android:hint="@string/recuperacion_email_hint"
-        android:inputType="textEmailAddress"
+        app:endIconMode="none"
+        app:startIconDrawable="@drawable/baseline_email_black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextEmailRecuperacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/recuperacion_email_hint"
+            android:inputType="textEmailAddress" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Botón para Solicitar Código -->
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonSolicitarCodigo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -31,25 +40,36 @@
         android:text="@string/solicitar_codigo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEmailRecuperacion" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputEmailRecuperacion"
+        app:cornerRadius="8dp"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
 
-    <!-- Campo de texto para introducir el Código -->
-    <EditText
-        android:id="@+id/editTextCodigo"
+    <!-- TextInputLayout para introducir el Código -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputCodigo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
-        android:hint="@string/introduce_codigo"
-        android:inputType="number"
+        app:endIconMode="none"
+        app:startIconDrawable="@drawable/baseline_vpn_key_black"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSolicitarCodigo" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonSolicitarCodigo">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextCodigo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/introduce_codigo"
+            android:inputType="number" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Botón para Enviar el Código -->
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonEnviarCodigo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -60,6 +80,8 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextCodigo" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputCodigo"
+        app:cornerRadius="8dp"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

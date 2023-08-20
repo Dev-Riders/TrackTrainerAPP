@@ -19,8 +19,11 @@ public class PerfilActivity extends AppCompatActivity {
         setContentView(R.layout.activity_perfil);
 
         ListView optionsListView = findViewById(R.id.optionsListView);
+
         String[] options = {"Información personal", "Datos de seguridad o algo similar"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, options);
+        int[] optionIcons = {R.drawable.baseline_person_24_black, R.drawable.baseline_lock_person_black};
+
+        IconListAdapter adapter = new IconListAdapter(this, options, optionIcons);
         optionsListView.setAdapter(adapter);
 
         optionsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

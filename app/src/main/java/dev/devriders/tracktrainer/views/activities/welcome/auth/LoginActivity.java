@@ -25,6 +25,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import dev.devriders.tracktrainer.R;
+import dev.devriders.tracktrainer.utils.Constants;
 import dev.devriders.tracktrainer.views.activities.HomeActivity;
 
 public class LoginActivity extends AppCompatActivity {
@@ -100,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
             String response = "";
 
             try {
-                URL url = new URL("http://10.0.2.2:25513/api/usuario/login");
+                URL url = new URL(Constants.BASE_URL +"/api/usuario/login");
 
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("POST");

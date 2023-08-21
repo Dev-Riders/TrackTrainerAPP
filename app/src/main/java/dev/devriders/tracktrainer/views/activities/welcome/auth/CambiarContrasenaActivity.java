@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import dev.devriders.tracktrainer.R;
+import dev.devriders.tracktrainer.utils.Constants;
 
 public class CambiarContrasenaActivity extends AppCompatActivity {
 
@@ -69,7 +70,7 @@ public class CambiarContrasenaActivity extends AppCompatActivity {
         return password.matches(PASSWORD_REGEX);
     }
     private void cambiarContrasena(String nuevaContrasena) {
-        String url = "http://10.0.2.2:25513/api/usuario/reset-password?code=" + resetCode;
+        String url = Constants.BASE_URL +"/api/usuario/reset-password?code=" + resetCode;
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,

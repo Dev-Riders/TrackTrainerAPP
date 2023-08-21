@@ -22,6 +22,7 @@ import org.json.JSONObject;
 import java.util.regex.Pattern;
 
 import dev.devriders.tracktrainer.R;
+import dev.devriders.tracktrainer.utils.Constants;
 import dev.devriders.tracktrainer.views.activities.HomeActivity;
 
 public class RegistroActivity extends AppCompatActivity {
@@ -29,7 +30,7 @@ public class RegistroActivity extends AppCompatActivity {
     private EditText editTextNombre, editTextApellido, editTextNickname, editTextCorreo, editTextContraseña, editTextConfirmarContraseña;
     private Button botonRegistrar;
     private RequestQueue requestQueue;
-    private String url = "http://10.0.2.2:25513/api/usuario/register";
+    private String url = Constants.BASE_URL +"/api/usuario/register";
 
     private static final String PASSWORD_REGEX = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,16}$";
     private static final Pattern PASSWORD_PATTERN = Pattern.compile(PASSWORD_REGEX);

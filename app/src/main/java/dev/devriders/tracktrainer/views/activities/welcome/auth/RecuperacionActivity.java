@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import dev.devriders.tracktrainer.R;
+import dev.devriders.tracktrainer.utils.Constants;
 
 public class RecuperacionActivity extends AppCompatActivity {
 
@@ -73,7 +74,7 @@ public class RecuperacionActivity extends AppCompatActivity {
     }
 
     private void enviarSolicitudRecuperacion(String correo) {
-        String url = "http://10.0.2.2:25513/api/usuario/forgot-password";
+        String url = Constants.BASE_URL +"/api/usuario/forgot-password";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,

@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -16,6 +14,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,19 +23,19 @@ import dev.devriders.tracktrainer.R;
 
 public class RecuperacionActivity extends AppCompatActivity {
 
-    private EditText editTextEmailRecuperacion;
-    private Button buttonSolicitarCodigo;
-    private EditText editTextCodigo;
-    private Button buttonEnviarCodigo;
+    private TextInputLayout textInputEmailRecuperacion;
+    private com.google.android.material.button.MaterialButton buttonSolicitarCodigo;
+    private TextInputLayout textInputCodigo;
+    private com.google.android.material.button.MaterialButton buttonEnviarCodigo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recuperacion);
 
-        editTextEmailRecuperacion = findViewById(R.id.editTextEmailRecuperacion);
+        textInputEmailRecuperacion = findViewById(R.id.textInputEmailRecuperacion);
         buttonSolicitarCodigo = findViewById(R.id.buttonSolicitarCodigo);
-        editTextCodigo = findViewById(R.id.editTextCodigo);
+        textInputCodigo = findViewById(R.id.textInputCodigo);
         buttonEnviarCodigo = findViewById(R.id.buttonEnviarCodigo);
 
         buttonSolicitarCodigo.setOnClickListener(new View.OnClickListener() {
@@ -44,7 +43,7 @@ public class RecuperacionActivity extends AppCompatActivity {
             public void onClick(View v) {
                 buttonSolicitarCodigo.setEnabled(false);  // Desactivar el botón
 
-                String correo = editTextEmailRecuperacion.getText().toString().trim();
+                String correo = textInputEmailRecuperacion.getEditText().getText().toString().trim();
                 if (Email_validation(correo)) {
                     enviarSolicitudRecuperacion(correo);
                 } else {
@@ -57,7 +56,7 @@ public class RecuperacionActivity extends AppCompatActivity {
         buttonEnviarCodigo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String codigo = editTextCodigo.getText().toString().trim();
+                String codigo = textInputCodigo.getEditText().getText().toString().trim();
                 if (!codigo.isEmpty()) {
                     Intent intent = new Intent(RecuperacionActivity.this, CambiarContrasenaActivity.class);
                     intent.putExtra("resetCode", codigo);
@@ -81,7 +80,7 @@ public class RecuperacionActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        editTextCodigo.setVisibility(View.VISIBLE);
+                        textInputCodigo.setVisibility(View.VISIBLE);
                         buttonEnviarCodigo.setVisibility(View.VISIBLE);
                         Toast.makeText(RecuperacionActivity.this, "Se ha enviado un código a tu correo.", Toast.LENGTH_SHORT).show();
                         buttonSolicitarCodigo.setEnabled(true);

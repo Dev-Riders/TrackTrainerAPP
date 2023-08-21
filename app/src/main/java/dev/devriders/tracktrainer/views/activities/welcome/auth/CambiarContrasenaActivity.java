@@ -26,9 +26,11 @@ import dev.devriders.tracktrainer.R;
 
 public class CambiarContrasenaActivity extends AppCompatActivity {
 
-    private EditText editTextNuevaContrasena;
+    private EditText editTextNuevaContrasena, editTextConfirmarContrasena;
     private Button buttonCambiarContrasena;
     private String resetCode;
+
+    private static final String PASSWORD_REGEX = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,16}$";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,7 @@ public class CambiarContrasenaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cambiar_contrasena);
 
         editTextNuevaContrasena = findViewById(R.id.editTextNuevaContrasena);
+        editTextConfirmarContrasena = findViewById(R.id.editTextConfirmarContrasena);
         buttonCambiarContrasena = findViewById(R.id.buttonCambiarContrasena);
 
         resetCode = getIntent().getStringExtra("resetCode");
@@ -44,15 +47,27 @@ public class CambiarContrasenaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String nuevaContrasena = editTextNuevaContrasena.getText().toString().trim();
-                if (!nuevaContrasena.isEmpty()) {
-                    cambiarContrasena(nuevaContrasena);
+                String confirmarContrasena = editTextConfirmarContrasena.getText().toString().trim();
+
+                if (!nuevaContrasena.isEmpty() && !confirmarContrasena.isEmpty()) {
+                    if (nuevaContrasena.equals(confirmarContrasena)) {
+                        if (Pass_validation(nuevaContrasena)) {
+                            cambiarContrasena(nuevaContrasena);
+                        } else {
+                            Toast.makeText(CambiarContrasenaActivity.this, "Contraseña inválida", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(CambiarContrasenaActivity.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
-                    Toast.makeText(CambiarContrasenaActivity.this, "Por favor, ingrese una nueva contraseña.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CambiarContrasenaActivity.this, "Por favor, complete ambos campos de contraseña.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
-
+    private boolean Pass_validation(String password) {
+        return password.matches(PASSWORD_REGEX);
+    }
     private void cambiarContrasena(String nuevaContrasena) {
         String url = "http://10.0.2.2:25513/api/usuario/reset-password?code=" + resetCode;
         RequestQueue requestQueue = Volley.newRequestQueue(this);

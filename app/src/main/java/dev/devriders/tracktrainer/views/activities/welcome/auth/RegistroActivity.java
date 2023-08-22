@@ -111,14 +111,14 @@ public class RegistroActivity extends AppCompatActivity {
                         new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                String errorMessage = "Ocurrió un error: " + error.getMessage();
+                                String errorMessage = "";
                                 Toast.makeText(RegistroActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
                             }
                         });
 
                 requestQueue.add(jsonObjectRequest);
                 // Redirige a HomeActivity
-                Intent intent = new Intent(RegistroActivity.this, HomeActivity.class);
+                Intent intent = new Intent(RegistroActivity.this, ActivarCuentaActivity.class);
                 startActivity(intent);
             } else {
                 Toast.makeText(RegistroActivity.this, "Dirección de correo electrónico inválida", Toast.LENGTH_SHORT).show();

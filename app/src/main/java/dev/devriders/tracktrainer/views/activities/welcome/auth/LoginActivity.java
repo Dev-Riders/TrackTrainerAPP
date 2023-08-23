@@ -139,7 +139,7 @@ public class LoginActivity extends AppCompatActivity {
             Log.d(TAG, "Login response: " + result);
 
             if (!result.isEmpty()) {
-                Toast.makeText(LoginActivity.this, "Login exitoso", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Ingreso exitoso", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                 startActivity(intent);
                 finish();

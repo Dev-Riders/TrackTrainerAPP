@@ -24,4 +24,38 @@
     <string name="registrarse">Registrarse</string>
     <string name="confirmar_contrasena_hint">Confirmar Contraseña</string>
 
+    <string name="terms_acceptance">1. Aceptación de los Términos\n\nAl usar nuestra aplicación de seguimiento de ejercicio, aceptas cumplir y estar sujeto a estos términos y condiciones. Si no estás de acuerdo con estos términos, no utilices nuestra aplicación.</string>
+
+    <string name="terms_registration">2. Registro y Cuentas\n\nAl crear una cuenta, garantizas que la información proporcionada es verdadera, precisa y completa. Eres responsable de mantener la confidencialidad de tu cuenta y contraseña.</string>
+
+    <string name="terms_privacy">3. Privacidad\n\nValoramos tu privacidad. <a href="link_to_privacy">Consultar nuestra Política de Privacidad</a> para obtener detalles sobre cómo manejamos tu información.</string>
+
+    <string name="terms_acceptable_use">4. Uso Aceptable\n\nDebes usar nuestra aplicación de una manera que no cause daño, sea ilegal o fraudulentamente. No debes intentar acceder a nuestra aplicación de manera no autorizada.</string>
+
+    <string name="terms_intellectual_property">5. Propiedad Intelectual\n\nEl contenido de esta aplicación es propiedad de DevRiders y está protegido por leyes de derechos de autor. No puedes copiar, redistribuir o revender nuestro contenido sin nuestro permiso.</string>
+
+    <string name="terms_limitation">6. Limitación de Responsabilidad\n\nNuestra aplicación se ofrece "tal cual". No garantizamos que será perfectamente adecuada para tus necesidades específicas. DevRiders no será responsable de ninguna lesión, pérdida o daño relacionado con el uso de esta aplicación.</string>
+
+    <string name="terms_advertising">7. Publicidad y Promociones\n\nPodemos mostrar anuncios y promociones. No nos hacemos responsables del contenido de los anuncios o de cualquier transacción que realices con un anunciante.</string>
+
+    <string name="terms_termination">8. Terminación\n\nNos reservamos el derecho de cerrar o suspender tu cuenta si violas estos términos.</string>
+
+    <string name="terms_changes">9. Cambios en los Términos\n\nPodemos actualizar estos términos en cualquier momento. Es tu responsabilidad revisar estos términos regularmente.</string>
+
+    <string name="terms_law">10. Ley Aplicable y Jurisdicción\n\nEstos términos se rigen por las leyes de Chile. Cualquier disputa será resuelta en los tribunales de Santiago, Chile.</string>
+
+    <string name="terms_contact">11. Contacto\n\nPara cualquier consulta sobre estos términos, contáctanos en devriderssolutions@gmail.com.</string>
+
+    <!-- Política de Privacidad -->
+    <string name="privacy_info">1. Información que recopilamos\n\nRecolectamos información proporcionada directamente por el usuario al registrarse y usar nuestra aplicación, que puede incluir nombre, dirección de correo electrónico, fecha de nacimiento, género, y datos relacionados con tu actividad física y objetivos de ejercicio.</string>
+    <string name="privacy_use">2. Cómo utilizamos tu información\n\nUsamos la información recolectada para:\n\nProporcionar y mejorar nuestro servicio.\nResponder a tus preguntas o solicitudes.\nEnviar comunicaciones, incluidas promocionales.\nMonitorizar y analizar tendencias y usos.</string>
+    <string name="privacy_share">3. Compartir tu información\n\nNo vendemos ni compartimos tu información personal con terceros para fines comerciales. Podemos compartir tu información solo en las siguientes circunstancias:\n\nCon proveedores de servicios que trabajan en nuestro nombre.\nSi es requerido por ley.\nEn relación con cualquier fusión, venta de activos de la compañía, financiamiento o adquisición.</string>
+    <string name="privacy_ads">4. Publicidad y Cookies\n\nUsamos cookies y otras tecnologías para recolectar información sobre el uso de nuestra aplicación y para ofrecer publicidad basada en intereses.</string>
+    <string name="privacy_security">5. Seguridad\n\nTomamos medidas para proteger tu información contra pérdida, robo, uso indebido y acceso no autorizado.</string>
+    <string name="privacy_access">6. Acceso y Modificación\n\nLos usuarios pueden acceder, corregir o eliminar su información personal contactando a nuestro equipo.</string>
+    <string name="privacy_links">7. Enlaces a otros sitios\n\nNuestra aplicación puede contener enlaces a otros sitios. No somos responsables de las prácticas de privacidad de dichos sitios.</string>
+    <string name="privacy_changes">8. Cambios a esta política\n\nPodemos cambiar esta política ocasionalmente. Si realizamos cambios significativos, te notificaremos.</string>
+    <string name="privacy_contact">9. Contacto\n\nSi tienes preguntas sobre esta política de privacidad, contáctanos en devriderssolutions@gmail.com.</string>
+
+    <string name="privacy_policy">Política de Privacidad</string>
 </resources>

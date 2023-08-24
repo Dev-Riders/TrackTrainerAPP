@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import dev.devriders.tracktrainer.R;
+import dev.devriders.tracktrainer.views.activities.terms.TerminosCondicionesActivity;
 import dev.devriders.tracktrainer.views.activities.usuario.PerfilActivity;
 import dev.devriders.tracktrainer.views.activities.welcome.WelcomeActivity;
 
@@ -48,9 +49,8 @@ public class UsuarioFragment extends Fragment {
                         startActivity(intentProfile);
                         break;
                     case 1:
-                        // TODO: Ir a la pantalla de términos y condiciones
-                        // Intent intentTerms = new Intent(getContext(), TermsConditionsActivity.class);
-                        // startActivity(intentTerms);
+                        Intent intentTerms = new Intent(getContext(), TerminosCondicionesActivity.class);
+                        startActivity(intentTerms);
                         break;
                     case 2:
                         cerrarSesionYSalir();

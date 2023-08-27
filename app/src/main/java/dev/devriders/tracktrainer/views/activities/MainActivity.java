@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 if (usuarioEstaLogueado()) {
-                    startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
+                    startActivity(new Intent(MainActivity.this, HomeActivity.class));
                 } else {
                     startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
                 }

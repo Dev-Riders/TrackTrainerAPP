@@ -1,0 +1,181 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Título de la imagen del ejercicio -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Imagen del ejercicio"
+            android:textStyle="bold"/>
+
+        <!-- Banner de la imagen -->
+        <ImageView
+            android:id="@+id/exerciseImage"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/backgroundwelcome" />
+
+        <!-- Título del ejercicio -->
+        <TextView
+            android:id="@+id/exerciseTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre del ejercicio"
+            android:textSize="24sp"
+            android:layout_marginTop="16dp" />
+
+        <!-- Título para el vídeo -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vídeo de referencia"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"/>
+
+        <!-- Video Placeholder -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/backgroundwelcome" />
+
+        <!-- Título para datos numéricos -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Datos numéricos"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"/>
+
+        <!-- Input para datos numéricos -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/decrementNumericButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:icon="@drawable/baseline_remove_black"
+                app:iconSize="24dp"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/numericInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:inputType="numberDecimal"
+                    android:text="0.5"
+                    android:clickable="false"
+                    android:cursorVisible="false" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/incrementNumericButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:icon="@drawable/baseline_add_black"
+                app:iconSize="24dp"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+        </LinearLayout>
+
+        <!-- Título para el temporizador -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Temporizador"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"/>
+
+        <!-- Timer de 45 segundos -->
+        <TextView
+            android:id="@+id/timerText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="00:45"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:layout_marginTop="8dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/startTimerButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Iniciar Timer"
+            android:layout_marginTop="8dp" />
+
+        <!-- Título para repeticiones -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Repeticiones"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"/>
+
+        <!-- Input para repeticiones -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/decrementRepsButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:icon="@drawable/baseline_remove_black"
+                app:iconSize="24dp"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/repsInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:text="0"
+                    android:clickable="false"
+                    android:cursorVisible="false" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/incrementRepsButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:icon="@drawable/baseline_add_black"
+                app:iconSize="24dp"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+        </LinearLayout>
+
+        <!-- Botón para registrar ejercicio -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/registerExerciseButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Registrar ejercicio"
+            android:layout_marginTop="16dp" />
+
+    </LinearLayout>
+</ScrollView>

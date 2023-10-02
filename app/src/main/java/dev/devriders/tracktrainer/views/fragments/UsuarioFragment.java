@@ -16,6 +16,7 @@ import android.widget.ListView;
 
 import dev.devriders.tracktrainer.R;
 import dev.devriders.tracktrainer.views.activities.terms.TerminosCondicionesActivity;
+import dev.devriders.tracktrainer.views.activities.usuario.IconListAdapter;
 import dev.devriders.tracktrainer.views.activities.usuario.PerfilActivity;
 import dev.devriders.tracktrainer.views.activities.welcome.WelcomeActivity;
 
@@ -36,7 +37,10 @@ public class UsuarioFragment extends Fragment {
 
         listView = view.findViewById(R.id.optionsListView);
         String[] options = {"Ver perfil", "Términos y condiciones", "Cerrar sesión o salir"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, options);
+        int[] icons = {R.drawable.baseline_person_24_black, R.drawable.baseline_description_black, R.drawable.baseline_logout_black};  // Asume que estos son los nombres de tus recursos de imagen
+
+        IconListAdapter adapter = new IconListAdapter(getContext(), options, icons);  // Utiliza IconListAdapter aquí
+
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

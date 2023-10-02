@@ -2,15 +2,12 @@ package dev.devriders.tracktrainer.views.activities.usuario;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.textfield.TextInputEditText;
 
 import dev.devriders.tracktrainer.R;
 import dev.devriders.tracktrainer.api.UsuarioApi;
@@ -22,39 +19,17 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class PerfilActivity extends AppCompatActivity {
+public class DatoSeguridadUsuario extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_perfil);
+        setContentView(R.layout.activity_dato_seguridad_usuario);
 
-        ListView optionsListView = findViewById(R.id.optionsListView);
-
-        String[] options = {"Información personal", "Datos de seguridad"};
-        int[] optionIcons = {R.drawable.baseline_person_24_black, R.drawable.baseline_lock_person_black};
-
-        IconListAdapter adapter = new IconListAdapter(this, options, optionIcons);
-        optionsListView.setAdapter(adapter);
-
-        optionsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position) {
-                    case 0:
-                        startActivity(new Intent(PerfilActivity.this, DatosUsuarioActivity.class));
-                        break;
-                    case 1:
-                        startActivity(new Intent(PerfilActivity.this, DatoSeguridadUsuario.class));
-                        break;
-                }
-            }
-        });
-
-        obtenerYMostrarNickname();
+        obtenerYMostrarCorreo();
     }
 
-    private void obtenerYMostrarNickname() {
+    private void obtenerYMostrarCorreo() {
         // Obtención del token JWT
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String token = preferences.getString("token", "");
@@ -74,25 +49,25 @@ public class PerfilActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseUsuario> call, Response<ResponseUsuario> response) {
                 if (response.isSuccessful()) {
-                    // Si la respuesta es exitosa, mostrar el nickname del usuario
-                    String nickname = response.body().getUsuario().getNickname();
-                    mostrarNickname(nickname);
+                    // Si la respuesta es exitosa, mostrar el correo del usuario
+                    String correo = response.body().getUsuario().getCorreo();
+                    mostrarCorreo(correo);
                 } else {
                     // Si hay un error, mostrar un mensaje de error
-                    Toast.makeText(PerfilActivity.this, "Error: " + response.message(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(DatoSeguridadUsuario.this, "Error: " + response.message(), Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseUsuario> call, Throwable t) {
                 // Si hay un fallo en la llamada, mostrar un mensaje de error
-                Toast.makeText(PerfilActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(DatoSeguridadUsuario.this, "Error: " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
 
-    private void mostrarNickname(String nickname) {
-        TextView nameTextView = findViewById(R.id.nameTextView);
-        nameTextView.setText(nickname);
+    private void mostrarCorreo(String correo) {
+        TextInputEditText correoEditText = findViewById(R.id.correoEditText);
+        correoEditText.setText(correo);
     }
 }

@@ -1,0 +1,23 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+  branches:
+    include:
+    - '*'
+
+jobs:
+- job: SyncToGitHub
+  pool:
+    vmImage: 'ubuntu-latest'
+  steps:
+  - script: |
+      git clone $(Build.Repository.Uri) repo && cd repo
+      git config --global user.email "salinasgiovanni25@gmail.com"
+      git config --global user.name "MrPotatoXx"
+      git remote add github https://github.com/Dev-Riders/TrackTrainerAPP
+      git push github HEAD:refs/heads/$(Build.SourceBranchName) --force
+    env:
+      GH_TOKEN: $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

@@ -16,14 +16,15 @@ import com.google.android.material.card.MaterialCardView;
 import java.util.List;
 
 import dev.devriders.tracktrainer.R;
+import dev.devriders.tracktrainer.models.Ejercicio;
 import dev.devriders.tracktrainer.views.activities.ejercicio.EjercicioDetalleActivity;
 
 public class EjercicioAdapter extends RecyclerView.Adapter<EjercicioAdapter.EjercicioViewHolder> {
 
     private Context context;
-    private List<String> ejercicios;
+    private List<Ejercicio> ejercicios;
 
-    public EjercicioAdapter(Context context, List<String> ejercicios) {
+    public EjercicioAdapter(Context context, List<Ejercicio> ejercicios) {
         this.context = context;
         this.ejercicios = ejercicios;
     }
@@ -38,12 +39,12 @@ public class EjercicioAdapter extends RecyclerView.Adapter<EjercicioAdapter.Ejer
 
     @Override
     public void onBindViewHolder(@NonNull EjercicioViewHolder holder, int position) {
-        String ejercicio = ejercicios.get(position);
-        holder.exerciseName.setText(ejercicio);
+        Ejercicio ejercicio = ejercicios.get(position);
+        holder.exerciseName.setText(ejercicio.getNombre_ejercicio());
         holder.exerciseImage.setImageResource(R.drawable.backgroundwelcome);  // Imagen temporal
         holder.cardView.setOnClickListener(v -> {
             Intent intent = new Intent(context, EjercicioDetalleActivity.class);
-            intent.putExtra("nombreEjercicio", ejercicio);  // Pasa el nombre del ejercicio a la actividad
+            intent.putExtra("nombreEjercicio", ejercicio.getNombre_ejercicio());  // Pasa el nombre del ejercicio a la actividad
             context.startActivity(intent);
         });
     }

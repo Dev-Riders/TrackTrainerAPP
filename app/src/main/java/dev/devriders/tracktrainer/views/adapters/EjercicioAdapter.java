@@ -44,10 +44,12 @@ public class EjercicioAdapter extends RecyclerView.Adapter<EjercicioAdapter.Ejer
         holder.exerciseImage.setImageResource(R.drawable.backgroundwelcome);  // Imagen temporal
         holder.cardView.setOnClickListener(v -> {
             Intent intent = new Intent(context, EjercicioDetalleActivity.class);
-            intent.putExtra("nombreEjercicio", ejercicio.getNombre_ejercicio());  // Pasa el nombre del ejercicio a la actividad
+            intent.putExtra("nombreEjercicio", ejercicio.getNombre_ejercicio());
+            intent.putExtra("idEjercicio", ejercicio.getId_ejercicio());
             context.startActivity(intent);
         });
     }
+
 
     @Override
     public int getItemCount() {

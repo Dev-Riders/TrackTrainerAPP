@@ -5,6 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import dev.devriders.tracktrainer.R;
+import dev.devriders.tracktrainer.api.EjercicioApi;
+import dev.devriders.tracktrainer.models.Ejercicio;
+import dev.devriders.tracktrainer.utils.Constants;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -25,6 +33,7 @@ public class EjercicioDetalleActivity extends AppCompatActivity {
     private Button decrementRepsButton, incrementRepsButton;
     private Button startTimerButton, registerExerciseButton;
     private CountDownTimer countDownTimer;
+    private int ejercicioId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +52,11 @@ public class EjercicioDetalleActivity extends AppCompatActivity {
         incrementRepsButton = findViewById(R.id.incrementRepsButton);
         startTimerButton = findViewById(R.id.startTimerButton);
         registerExerciseButton = findViewById(R.id.registerExerciseButton);
+
+        ejercicioId = getIntent().getIntExtra("idEjercicio", -1);
+        if (ejercicioId != -1) {
+            fetchEjercicioDetails(ejercicioId);
+        }
 
         // Eventos de botones
         decrementNumericButton.setOnClickListener(v -> {
@@ -72,7 +86,6 @@ public class EjercicioDetalleActivity extends AppCompatActivity {
         registerExerciseButton.setOnClickListener(v -> {
             numericInput.setText("0.5");
             repsInput.setText("1");
-            // No reiniciamos el temporizador aquí. Se reiniciará cuando lo detengas o termine.
         });
 
         startTimerButton.setOnClickListener(v -> {
@@ -90,10 +103,39 @@ public class EjercicioDetalleActivity extends AppCompatActivity {
 
                 @Override
                 public void onFinish() {
-                    timerText.setText("00:45"); // Se reinicia a 45 segundos al terminar
+                    timerText.setText("00:45");
                 }
             }.start();
         });
+    }
+
+    private void fetchEjercicioDetails(int id) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Constants.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        EjercicioApi ejercicioApi = retrofit.create(EjercicioApi.class);
+        Call<Ejercicio> call = ejercicioApi.getEjercicioById(id);
+
+        call.enqueue(new Callback<Ejercicio>() {
+            @Override
+            public void onResponse(Call<Ejercicio> call, Response<Ejercicio> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    updateUIWithEjercicioDetails(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Ejercicio> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void updateUIWithEjercicioDetails(Ejercicio ejercicio) {
+        exerciseTitle.setText(ejercicio.getNombre_ejercicio());
+        // Actualiza otras vistas según la necesidad
     }
 
     @Override

@@ -78,7 +78,7 @@ public class HomeActivity extends AppCompatActivity {
             } else {
                 Log.d("TAG", "El anuncio intersticial aún no estaba listo.");
             }
-        }, 20000); // 20 segundos
+        }, 2000000); // 20 segundos = 20000
     }
 
     private void loadInterstitialAd() {

@@ -2,6 +2,7 @@ package dev.devriders.tracktrainer.views.activities.ejercicio;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.net.Uri;
 import android.os.Bundle;
 
 import dev.devriders.tracktrainer.R;
@@ -16,24 +17,37 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Base64;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.TextView;
+import android.widget.VideoView;
+
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.bumptech.glide.Glide;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class EjercicioDetalleActivity extends AppCompatActivity {
 
     private ImageView exerciseImage;
-    private TextView exerciseTitle, timerText;
+    private TextView exerciseTitle, timerText, textViewDescripcion, videoTitle;
     private EditText numericInput, repsInput;
     private Button decrementNumericButton, incrementNumericButton;
     private Button decrementRepsButton, incrementRepsButton;
     private Button startTimerButton, registerExerciseButton;
     private CountDownTimer countDownTimer;
     private int ejercicioId;
+    private VideoView exerciseVideo;
+    private MediaController mediaController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +66,11 @@ public class EjercicioDetalleActivity extends AppCompatActivity {
         incrementRepsButton = findViewById(R.id.incrementRepsButton);
         startTimerButton = findViewById(R.id.startTimerButton);
         registerExerciseButton = findViewById(R.id.registerExerciseButton);
+        textViewDescripcion = findViewById(R.id.textViewDescripcion);
+        exerciseVideo = findViewById(R.id.exerciseVideo);
+        mediaController = new MediaController(this);
+        exerciseVideo.setMediaController(mediaController);
+        videoTitle = findViewById(R.id.videoTitle);
 
         ejercicioId = getIntent().getIntExtra("idEjercicio", -1);
         if (ejercicioId != -1) {
@@ -74,7 +93,7 @@ public class EjercicioDetalleActivity extends AppCompatActivity {
         decrementRepsButton.setOnClickListener(v -> {
             int currentReps = Integer.parseInt(repsInput.getText().toString());
             if (currentReps > 1) {
-                repsInput.setText(String.valueOf(currentReps - 1));
+                repsInput.setText(String.valueOf(currentReps - 2));
             }
         });
 
@@ -128,14 +147,38 @@ public class EjercicioDetalleActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Ejercicio> call, Throwable t) {
-
+                // Manejo de errores
             }
         });
     }
 
     private void updateUIWithEjercicioDetails(Ejercicio ejercicio) {
-        exerciseTitle.setText(ejercicio.getNombre_ejercicio());
-        // Actualiza otras vistas según la necesidad
+        exerciseTitle.setText(ejercicio.getNombreEjercicio());
+
+        if (ejercicio.getImagenEjercicio() != null && !ejercicio.getImagenEjercicio().isEmpty()) {
+            String imageUrl = Constants.BASE_URL + "/" + ejercicio.getImagenEjercicio().replace("\\", "/");
+            Glide.with(this)
+                    .load(imageUrl)
+                    .into(exerciseImage);
+        } else {
+            exerciseImage.setImageResource(R.drawable.backgroundwelcome); // Imagen por defecto
+        }
+
+        textViewDescripcion.setText(ejercicio.getDescripcionEjercicio());
+
+        if (ejercicio.getVideoEjercicio() != null && !ejercicio.getVideoEjercicio().isEmpty()) {
+            String videoUrl = Constants.BASE_URL + "/" + ejercicio.getVideoEjercicio().replace("\\", "/");
+            Uri videoUri = Uri.parse(videoUrl);
+            exerciseVideo.setVideoURI(videoUri);
+            exerciseVideo.start();
+            exerciseVideo.setVisibility(View.VISIBLE);
+            videoTitle.setVisibility(View.VISIBLE);
+
+            mediaController.setAnchorView(exerciseVideo);
+        } else {
+            exerciseVideo.setVisibility(View.GONE);
+            videoTitle.setVisibility(View.GONE);
+        }
     }
 
     @Override

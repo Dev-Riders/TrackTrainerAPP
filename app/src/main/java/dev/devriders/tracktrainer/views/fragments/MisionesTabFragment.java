@@ -62,13 +62,15 @@ public class MisionesTabFragment extends Fragment {
                     adapter = new MisionAdapter(getContext(), misionesList);
                     recyclerView.setAdapter(adapter);
                 } else {
-                    Toast.makeText(getContext(), "Error al obtener ejercicios", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Error al obtener misiones", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<Mision>> call, Throwable t) {
                 Toast.makeText(getContext(), "Fallo en la conexión", Toast.LENGTH_SHORT).show();
+                //mostrar erro en la consola
+                t.printStackTrace();
             }
         });
     }

@@ -2,15 +2,13 @@ package dev.devriders.tracktrainer.models;
 
 public class Ejercicio {
     private String nombreEjercicio;
-    private String tipoEjercicio;
     private String imagenEjercicio;
     private String videoEjercicio;
     private String descripcionEjercicio;
     private int idEjercicio;
 
-    public Ejercicio(String nombreEjercicio, String tipoEjercicio, String imagenEjercicio, String videoEjercicio, String descripcionEjercicio, int idEjercicio) {
+    public Ejercicio(String nombreEjercicio, String imagenEjercicio, String videoEjercicio, String descripcionEjercicio, int idEjercicio) {
         this.nombreEjercicio = nombreEjercicio;
-        this.tipoEjercicio = tipoEjercicio;
         this.imagenEjercicio = imagenEjercicio;
         this.videoEjercicio = videoEjercicio;
         this.descripcionEjercicio = descripcionEjercicio;
@@ -23,14 +21,6 @@ public class Ejercicio {
 
     public void setNombreEjercicio(String nombreEjercicio) {
         this.nombreEjercicio = nombreEjercicio;
-    }
-
-    public String getTipoEjercicio() {
-        return tipoEjercicio;
-    }
-
-    public void setTipoEjercicio(String tipoEjercicio) {
-        this.tipoEjercicio = tipoEjercicio;
     }
 
     public String getImagenEjercicio() {

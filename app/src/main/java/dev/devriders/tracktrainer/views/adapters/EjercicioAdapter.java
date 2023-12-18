@@ -49,7 +49,7 @@ public class EjercicioAdapter extends RecyclerView.Adapter<EjercicioAdapter.Ejer
         holder.exerciseName.setText(ejercicio.getNombreEjercicio());
 
         if (ejercicio.getImagenEjercicio() != null && !ejercicio.getImagenEjercicio().isEmpty()) {
-            String imageUrl = Constants.BASE_URL + "/" + ejercicio.getImagenEjercicio().replace("\\", "/");
+            String imageUrl = Constants.BASE_URL + "/" + ejercicio.getImagenEjercicio();
 
             Glide.with(context)
                     .load(imageUrl)

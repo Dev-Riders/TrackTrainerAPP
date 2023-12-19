@@ -19,6 +19,7 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import dev.devriders.tracktrainer.R;
+import dev.devriders.tracktrainer.views.fragments.AmigosFragment;
 import dev.devriders.tracktrainer.views.fragments.EjerciciosFragment;
 import dev.devriders.tracktrainer.views.fragments.MisionesFragment;
 import dev.devriders.tracktrainer.views.fragments.UsuarioFragment;
@@ -30,9 +31,11 @@ public class HomeActivity extends AppCompatActivity {
     private Handler mHandler = new Handler();
     private EjerciciosFragment ejerciciosFragment;
     private MisionesFragment misionesFragment;
+    private AmigosFragment amigosFragment;
     private UsuarioFragment usuarioFragment;
     private static final int MENU_EJERCICIOS = R.id.nav_ejercicios;
     private static final int MENU_MISIONES = R.id.nav_misiones;
+    private static final int MENU_AMIGOS = R.id.nav_amigos;
     private static final int MENU_PERFIL = R.id.nav_perfil;
 
     @Override
@@ -43,6 +46,7 @@ public class HomeActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         ejerciciosFragment = new EjerciciosFragment();
         misionesFragment = new MisionesFragment();
+        amigosFragment = new AmigosFragment();
         usuarioFragment = new UsuarioFragment();
 
         // Mostrar el fragmento de ejercicios por defecto
@@ -57,6 +61,11 @@ public class HomeActivity extends AppCompatActivity {
                 return true;
             } else if (itemId == MENU_MISIONES) {
                 showMisionesFragment();
+                return true;
+            } else if (itemId == MENU_AMIGOS) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, amigosFragment)
+                        .commit();
                 return true;
             } else if (itemId == MENU_PERFIL) {
                 showUsuarioFragment();

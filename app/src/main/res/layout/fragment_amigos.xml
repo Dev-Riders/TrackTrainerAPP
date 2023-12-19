@@ -8,10 +8,11 @@
     tools:context=".views.fragments.AmigosFragment">
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout"
+        android:id="@+id/tab_layoutamigos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabMode="fixed" />
+        app:tabMode="fixed"
+        app:tabGravity="fill" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager"

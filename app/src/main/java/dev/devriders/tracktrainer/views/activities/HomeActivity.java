@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MenuItem;
 
@@ -19,10 +21,20 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import dev.devriders.tracktrainer.R;
+import dev.devriders.tracktrainer.api.UsuarioApi;
+import dev.devriders.tracktrainer.models.ResponseUsuario;
+import dev.devriders.tracktrainer.models.Usuario;
+import dev.devriders.tracktrainer.singleton.UserDataHolder;
+import dev.devriders.tracktrainer.utils.Constants;
 import dev.devriders.tracktrainer.views.fragments.AmigosFragment;
 import dev.devriders.tracktrainer.views.fragments.EjerciciosFragment;
 import dev.devriders.tracktrainer.views.fragments.MisionesFragment;
 import dev.devriders.tracktrainer.views.fragments.UsuarioFragment;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -48,6 +60,7 @@ public class HomeActivity extends AppCompatActivity {
         misionesFragment = new MisionesFragment();
         amigosFragment = new AmigosFragment();
         usuarioFragment = new UsuarioFragment();
+        cargarDatosUsuario();
 
         // Mostrar el fragmento de ejercicios por defecto
         getSupportFragmentManager().beginTransaction()
@@ -142,4 +155,52 @@ public class HomeActivity extends AppCompatActivity {
                 .replace(R.id.fragment_container, usuarioFragment)
                 .commit();
     }
+
+    private String obtenerTokenAutenticacion() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        return preferences.getString("token", "");
+    }
+    private void cargarDatosUsuario() {
+        String token = obtenerTokenAutenticacion();
+        if (!token.isEmpty()) {
+            // Creación de la instancia de Retrofit
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(Constants.BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            // Creación de la instancia de la interfaz UsuarioApi
+            UsuarioApi usuarioApi = retrofit.create(UsuarioApi.class);
+
+            Call<ResponseUsuario> call = usuarioApi.obtenerUsuario(token);
+            call.enqueue(new Callback<ResponseUsuario>() {
+                @Override
+                public void onResponse(Call<ResponseUsuario> call, Response<ResponseUsuario> response) {
+                    if (response.isSuccessful()) {
+                        ResponseUsuario responseUsuario = response.body();
+                        procesarDatosUsuario(responseUsuario);
+                    } else {
+                        Log.e("API Error", "Error: " + response.message());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseUsuario> call, Throwable t) {
+                    Log.e("API Failure", "Error: " + t.getMessage());
+                }
+            });
+        } else {
+        }
+    }
+
+    private void procesarDatosUsuario(ResponseUsuario responseUsuario) {
+        if (responseUsuario != null && responseUsuario.getUsuario() != null) {
+            Usuario usuario = responseUsuario.getUsuario();
+
+            UserDataHolder.getInstance().setCurrentUser(usuario);
+
+        }
+    }
+
+
 }

@@ -25,4 +25,10 @@
         android:layout_height="wrap_content"
         android:text="NickName del Amigo"
         android:textSize="18sp" />
+
+    <ImageView
+        android:id="@+id/menuButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_menu_24_black" />
 </LinearLayout>

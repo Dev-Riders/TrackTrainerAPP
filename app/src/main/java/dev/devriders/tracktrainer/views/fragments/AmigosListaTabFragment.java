@@ -49,7 +49,6 @@ public class AmigosListaTabFragment extends Fragment {
         Usuario usuarioActual = UserDataHolder.getInstance().getCurrentUser();
         if (usuarioActual != null) {
             Long usuarioId = Long.valueOf(usuarioActual.getId());
-            Log.d("AmigosListaTabFragment", "ID del usuario: " + usuarioId);
 
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(Constants.BASE_URL)
@@ -61,7 +60,7 @@ public class AmigosListaTabFragment extends Fragment {
             call.enqueue(new Callback<List<Amigo>>() {
                 @Override
                 public void onResponse(Call<List<Amigo>> call, Response<List<Amigo>> response) {
-                    if (response.isSuccessful() && response.body() != null) {
+                    if (response.isSuccessful() && response.body() != null ) {
                         listaAmigos.clear();
                         listaAmigos.addAll(response.body());
                         adapter.notifyDataSetChanged();

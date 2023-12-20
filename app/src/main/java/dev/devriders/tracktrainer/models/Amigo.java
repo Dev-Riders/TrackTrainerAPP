@@ -1,7 +1,7 @@
 package dev.devriders.tracktrainer.models;
 
 public class Amigo {
-    private Long idamistad;
+    private Long idamigos;
     private String estado;
     private String eliminacion;
     private Usuario usuario; // Asumiendo que tienes un modelo Usuario
@@ -9,8 +9,13 @@ public class Amigo {
 
     // Getters y setters
 
-    public Long getIdamistad() { return idamistad; }
-    public void setIdamistad(Long idamistad) { this.idamistad = idamistad; }
+    public Long getIdamigos() {
+        return idamigos;
+    }
+
+    public void setIdamigos(Long idamigos) {
+        this.idamigos = idamigos;
+    }
 
     public String getEstado() { return estado; }
     public void setEstado(String estado) { this.estado = estado; }

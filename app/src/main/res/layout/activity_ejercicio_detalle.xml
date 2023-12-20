@@ -68,6 +68,7 @@
 
         <!-- Título para datos numéricos -->
         <TextView
+            android:id="@+id/textViewDescripcionDistancia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Datos numéricos"
@@ -141,6 +142,7 @@
 
         <!-- Título para repeticiones -->
         <TextView
+            android:id="@+id/textViewDescripcionRepeticion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Repeticiones"

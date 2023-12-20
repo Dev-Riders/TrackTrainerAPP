@@ -39,13 +39,16 @@ import java.util.concurrent.TimeUnit;
 public class EjercicioDetalleActivity extends AppCompatActivity {
 
     private ImageView exerciseImage;
-    private TextView exerciseTitle, timerText, textViewDescripcion, videoTitle;
+    private TextView exerciseTitle, timerText, textViewDescripcion, videoTitle, datosNumericos, repeticiones;
     private EditText numericInput, repsInput;
     private Button decrementNumericButton, incrementNumericButton;
     private Button decrementRepsButton, incrementRepsButton;
     private Button startTimerButton, registerExerciseButton;
     private CountDownTimer countDownTimer;
     private int ejercicioId;
+    //private int tipoCategoria;
+    private String ejercicioCategoria;
+    private String categoria;
     private VideoView exerciseVideo;
     private MediaController mediaController;
 
@@ -71,41 +74,60 @@ public class EjercicioDetalleActivity extends AppCompatActivity {
         mediaController = new MediaController(this);
         exerciseVideo.setMediaController(mediaController);
         videoTitle = findViewById(R.id.videoTitle);
+        datosNumericos = findViewById(R.id.textViewDescripcionDistancia);
+        repeticiones = findViewById(R.id.textViewDescripcionRepeticion);
 
         ejercicioId = getIntent().getIntExtra("idEjercicio", -1);
         if (ejercicioId != -1) {
             fetchEjercicioDetails(ejercicioId);
         }
 
+        ejercicioCategoria = getIntent().getStringExtra("categorias");
+        if (!ejercicioCategoria.equals("")) {
+            fetchEjercicioDetails(ejercicioId);
+        }
+
         // Eventos de botones
-        decrementNumericButton.setOnClickListener(v -> {
-            double currentValue = Double.parseDouble(numericInput.getText().toString());
-            if (currentValue > 0.5) {
-                numericInput.setText(String.valueOf(currentValue - 0.5));
-            }
-        });
+        if(ejercicioCategoria.equals("Fuerza")){
+            numericInput.setVisibility(View.GONE);
+            decrementNumericButton.setVisibility(View.GONE);
+            incrementNumericButton.setVisibility(View.GONE);
+            datosNumericos.setVisibility(View.GONE);
+        }else {
+            decrementNumericButton.setOnClickListener(v -> {
+                double currentValue = Double.parseDouble(numericInput.getText().toString());
+                if (currentValue > 0.5) {
+                    numericInput.setText(String.valueOf(currentValue - 0.5));
+                }
+            });
 
-        incrementNumericButton.setOnClickListener(v -> {
-            double currentValue = Double.parseDouble(numericInput.getText().toString());
-            numericInput.setText(String.valueOf(currentValue + 0.5));
-        });
+            incrementNumericButton.setOnClickListener(v -> {
+                double currentValue = Double.parseDouble(numericInput.getText().toString());
+                numericInput.setText(String.valueOf(currentValue + 0.5));
+            });
+        }
+        if(ejercicioCategoria.equals("Cardio")||ejercicioCategoria.equals("Flexibilidad")||ejercicioCategoria.equals("Equilibrio")){
+            repsInput.setVisibility(View.GONE);
+            decrementRepsButton.setVisibility(View.GONE);
+            incrementRepsButton.setVisibility(View.GONE);
+            repeticiones.setVisibility(View.GONE);
+        }else {
+            decrementRepsButton.setOnClickListener(v -> {
+                int currentReps = Integer.parseInt(repsInput.getText().toString());
+                if (currentReps > 1) {
+                    repsInput.setText(String.valueOf(currentReps - 2));
+                }
+            });
 
-        decrementRepsButton.setOnClickListener(v -> {
-            int currentReps = Integer.parseInt(repsInput.getText().toString());
-            if (currentReps > 1) {
-                repsInput.setText(String.valueOf(currentReps - 2));
-            }
-        });
-
-        incrementRepsButton.setOnClickListener(v -> {
-            int currentReps = Integer.parseInt(repsInput.getText().toString());
-            repsInput.setText(String.valueOf(currentReps + 1));
-        });
-
-        registerExerciseButton.setOnClickListener(v -> {
-            numericInput.setText("0.5");
-            repsInput.setText("1");
-        });
+            incrementRepsButton.setOnClickListener(v -> {
+                int currentReps = Integer.parseInt(repsInput.getText().toString());
+                repsInput.setText(String.valueOf(currentReps + 1));
+            });
+        }
+            registerExerciseButton.setOnClickListener(v -> {
+                numericInput.setText("0.5");
+                repsInput.setText("1");
+            });
 
         startTimerButton.setOnClickListener(v -> {
             if (countDownTimer != null) {

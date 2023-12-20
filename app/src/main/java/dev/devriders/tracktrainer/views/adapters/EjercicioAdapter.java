@@ -21,6 +21,7 @@ import com.google.android.material.card.MaterialCardView;
 import java.util.List;
 
 import dev.devriders.tracktrainer.R;
+import dev.devriders.tracktrainer.models.Categoria;
 import dev.devriders.tracktrainer.models.Ejercicio;
 import dev.devriders.tracktrainer.utils.Constants;
 import dev.devriders.tracktrainer.views.activities.ejercicio.EjercicioDetalleActivity;
@@ -30,9 +31,12 @@ public class EjercicioAdapter extends RecyclerView.Adapter<EjercicioAdapter.Ejer
     private Context context;
     private List<Ejercicio> ejercicios;
 
+    private Categoria categorias;
+
     public EjercicioAdapter(Context context, List<Ejercicio> ejercicios) {
         this.context = context;
         this.ejercicios = ejercicios;
+        //this.categorias = categorias;
     }
 
     @NonNull
@@ -46,6 +50,7 @@ public class EjercicioAdapter extends RecyclerView.Adapter<EjercicioAdapter.Ejer
     @Override
     public void onBindViewHolder(@NonNull EjercicioViewHolder holder, int position) {
         Ejercicio ejercicio = ejercicios.get(position);
+        //Categoria categoria = new Categoria(ejercicio.getCategorias().getIdCategoria(), ejercicio.getCategorias().getNombre_categoria());
         holder.exerciseName.setText(ejercicio.getNombreEjercicio());
 
         if (ejercicio.getImagenEjercicio() != null && !ejercicio.getImagenEjercicio().isEmpty()) {
@@ -54,16 +59,16 @@ public class EjercicioAdapter extends RecyclerView.Adapter<EjercicioAdapter.Ejer
             Glide.with(context)
                     .load(imageUrl)
                     .into(holder.exerciseImage);
-            //MUESTRA LA RUTA EN LOGCAT
-            Log.d("IMAGE", imageUrl);
         } else {
             holder.exerciseImage.setImageResource(R.drawable.backgroundwelcome);  // Imagen por defecto
         }
+        //holder.categoria.set
 
         holder.cardView.setOnClickListener(v -> {
             Intent intent = new Intent(context, EjercicioDetalleActivity.class);
             intent.putExtra("nombreEjercicio", ejercicio.getNombreEjercicio());
             intent.putExtra("idEjercicio", ejercicio.getIdEjercicio());
+            intent.putExtra("categorias", ejercicio.getCategorias().getNombre_categoria());
             context.startActivity(intent);
         });
     }

@@ -7,8 +7,14 @@ import android.os.Bundle;
 
 import dev.devriders.tracktrainer.R;
 import dev.devriders.tracktrainer.api.EjercicioApi;
+import dev.devriders.tracktrainer.api.EjexuserApi;
 import dev.devriders.tracktrainer.models.Ejercicio;
+import dev.devriders.tracktrainer.models.Ejexuser;
+import dev.devriders.tracktrainer.models.Usuario;
+import dev.devriders.tracktrainer.singleton.UserDataHolder;
 import dev.devriders.tracktrainer.utils.Constants;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -29,6 +35,9 @@ import android.widget.VideoView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -88,7 +97,7 @@ public class EjercicioDetalleActivity extends AppCompatActivity {
         }
 
         // Eventos de botones
-        if(ejercicioCategoria.equals("Fuerza")){
+        if(ejercicioCategoria.equals("Fuerza")||ejercicioCategoria.equals("HIIT")){
             numericInput.setVisibility(View.GONE);
             decrementNumericButton.setVisibility(View.GONE);
             incrementNumericButton.setVisibility(View.GONE);
@@ -124,10 +133,50 @@ public class EjercicioDetalleActivity extends AppCompatActivity {
                 repsInput.setText(String.valueOf(currentReps + 1));
             });
         }
-            registerExerciseButton.setOnClickListener(v -> {
-                numericInput.setText("0.5");
-                repsInput.setText("1");
-            });
+
+        registerExerciseButton.setOnClickListener(v -> {
+            if(ejercicioCategoria.equals("Cardio")||ejercicioCategoria.equals("Flexibilidad")||ejercicioCategoria.equals("Equilibrio")) {
+
+
+                try {
+                    JSONObject jsonObject = new JSONObject();
+                    jsonObject.put("cantidad", 0);
+                    jsonObject.put("tiempo", timerText.getText().toString());
+                    jsonObject.put("peso", numericInput.getText());
+
+                    String jsonString = jsonObject.toString();
+                    System.out.println("JSON resultante: " + jsonString);
+                    //Call<Ejexuser> createComment();
+                    sendJsonToApi(jsonString);
+                    //RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), jsonString);
+                }catch (NumberFormatException e) {
+                    System.err.println("Error al convertir a entero: " + e.getMessage());
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+            }else{
+
+                try {
+                    JSONObject jsonObject = new JSONObject();
+                    jsonObject.put("cantidad", repsInput.getText());
+                    jsonObject.put("tiempo", timerText.getText().toString());
+                    jsonObject.put("peso", 0);
+
+                    String jsonString = jsonObject.toString();
+                    System.out.println("JSON resultante: " + jsonString);
+                    //Call<Ejexuser> createComment();
+                    sendJsonToApi(jsonString);
+                    //RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), jsonString);
+                }catch (NumberFormatException e) {
+                    System.err.println("Error al convertir a entero: " + e.getMessage());
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
+        });
+
+
 
         startTimerButton.setOnClickListener(v -> {
             if (countDownTimer != null) {
@@ -150,6 +199,39 @@ public class EjercicioDetalleActivity extends AppCompatActivity {
         });
     }
 
+    private void sendJsonToApi(String jsonString) {
+        Usuario usuarioActual = UserDataHolder.getInstance().getCurrentUser();
+        if (usuarioActual != null) {
+            Long usuarioId = Long.valueOf(usuarioActual.getId());
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(Constants.BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            EjexuserApi ejexuserApi = retrofit.create(EjexuserApi.class);
+
+            // Reemplaza con los valores adecuados para id_usuario e id_ejercicio
+            Call<Ejexuser> call = ejexuserApi.createComment(usuarioId, ejercicioId, RequestBody.create(okhttp3.MediaType.parse("application/json"), jsonString));
+
+            call.enqueue(new Callback<Ejexuser>() {
+                @Override
+                public void onResponse(Call<Ejexuser> call, Response<Ejexuser> response) {
+                    if (response.isSuccessful()) {
+                        System.out.println("Solicitud exitosa");
+                    } else {
+                        System.err.println("Error en la solicitud. Código de estado: " + response.code());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Ejexuser> call, Throwable t) {
+                    System.err.println("Error al realizar la solicitud: " + t.getMessage());
+                }
+            });
+        }
+    }
+    //Aqui!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     private void fetchEjercicioDetails(int id) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)

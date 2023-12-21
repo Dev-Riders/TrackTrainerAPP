@@ -3,6 +3,7 @@ package dev.devriders.tracktrainer.api;
 import java.util.List;
 
 import dev.devriders.tracktrainer.models.Amigo;
+import dev.devriders.tracktrainer.models.Puntaje;
 import dev.devriders.tracktrainer.models.Usuario;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -22,4 +23,7 @@ public interface AmigosApi {
 
     @POST("/api/amistad/enviar-solicitud")
     Call<Amigo> enviarSolicitudAmistad(@Body Amigo solicitud);
+
+    @GET("/api/puntaje/{Idusuario}/get-puntaje-by-id-usuario")
+    Call<List<Puntaje>> getPuntrajeByIdUsuario(@Path("Idusuario") Long idUsuario);
 }

@@ -18,6 +18,7 @@ import dev.devriders.tracktrainer.R;
 import dev.devriders.tracktrainer.api.AmigosApi;
 import dev.devriders.tracktrainer.models.Amigo;
 import dev.devriders.tracktrainer.models.Usuario;
+import dev.devriders.tracktrainer.singleton.AmigosHolder;
 import dev.devriders.tracktrainer.singleton.UserDataHolder;
 import dev.devriders.tracktrainer.utils.Constants;
 import dev.devriders.tracktrainer.views.adapters.AmigosAdapter;
@@ -40,9 +41,13 @@ public class AmigosListaTabFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new AmigosAdapter(listaAmigos);
         recyclerView.setAdapter(adapter);
-
-        cargarAmigos();
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        cargarAmigos(); // Cargar amigos cada vez que se muestra el fragmento
     }
 
     private void cargarAmigos() {
@@ -60,29 +65,21 @@ public class AmigosListaTabFragment extends Fragment {
             call.enqueue(new Callback<List<Amigo>>() {
                 @Override
                 public void onResponse(Call<List<Amigo>> call, Response<List<Amigo>> response) {
-                    if (response.isSuccessful() && response.body() != null ) {
+                    if (response.isSuccessful() && response.body() != null) {
                         listaAmigos.clear();
                         listaAmigos.addAll(response.body());
                         adapter.notifyDataSetChanged();
 
-                        // Agregar un registro para ver los datos recibidos
-                        Log.d("AmigosListaTabFragment", "Amigos recibidos: " + response.body());
-                    } else {
-                        // Agregar un registro en caso de respuesta no exitosa
-                        Log.e("AmigosListaTabFragment", "Respuesta no exitosa: " + response.errorBody());
+                        // Actualizar AmigosHolder con la lista de amigos
+                        AmigosHolder.getInstance().setListaAmigos(listaAmigos);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<List<Amigo>> call, Throwable t) {
-                    // Agregar un registro en caso de fallo
-                    Log.e("AmigosListaTabFragment", "Error en la API: " + t.getMessage());
+                    // Manejar fallos aquí
                 }
             });
-        } else {
-            Log.e("AmigosListaTabFragment", "Usuario actual es nulo");
         }
     }
-
-
 }

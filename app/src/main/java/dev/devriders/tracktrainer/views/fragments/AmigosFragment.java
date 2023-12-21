@@ -40,9 +40,9 @@ public class AmigosFragment extends Fragment {
                         case 1:
                             tab.setText("Añadir");
                             break;
-                        case 2:
-                            tab.setText("Solicitudes");
-                            break;
+                        //case 2:
+                            //tab.setText("Solicitudes");
+                            //break;
                     }
                 }
         ).attach();

@@ -21,8 +21,8 @@ public class AmigosPagerAdapter extends FragmentStateAdapter {
                 return new AmigosListaTabFragment();
             case 1:
                 return new AmigosAddTabFragment();
-            case 2:
-                return new AmigosSolicitudTabFragment();
+            //case 2:
+                //return new AmigosSolicitudTabFragment();
             default:
                 return null;
         }
@@ -30,6 +30,6 @@ public class AmigosPagerAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 3; // Número total de pestañas
+        return 2; // Número total de pestañas
     }
 }

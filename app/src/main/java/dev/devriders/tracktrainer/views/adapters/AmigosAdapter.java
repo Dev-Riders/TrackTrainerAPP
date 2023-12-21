@@ -45,7 +45,6 @@ public class AmigosAdapter extends RecyclerView.Adapter<AmigosAdapter.ViewHolder
         holder.nombreAmigo.setText(amigo.getAmigo().getNombre());
         holder.apellidoAmigo.setText(" "+amigo.getAmigo().getApellido());
         holder.nickNameAmigo.setText(" ("+amigo.getAmigo().getNickname()+")");
-        Log.d("AmigosAdapter", "Amigo ID: " + amigo.getIdamigos());
         holder.menuButton.setOnClickListener(view -> mostrarMenu(view, listaAmigos.get(position), position));
     }
 
@@ -72,7 +71,6 @@ public class AmigosAdapter extends RecyclerView.Adapter<AmigosAdapter.ViewHolder
 
         AmigosApi amigosApi = retrofit.create(AmigosApi.class);
         Call<Void> call = amigosApi.deleteAmigoById(amigo.getIdamigos());
-        Log.d("AmigosAdapter", "Amigo a eliminar: " + amigo.getIdamigos());
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -90,8 +88,6 @@ public class AmigosAdapter extends RecyclerView.Adapter<AmigosAdapter.ViewHolder
             }
         });
     }
-
-
 
     @Override
     public int getItemCount() {

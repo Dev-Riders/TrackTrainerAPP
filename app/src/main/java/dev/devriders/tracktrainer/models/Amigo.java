@@ -4,7 +4,7 @@ public class Amigo {
     private Long idamigos;
     private String estado;
     private String eliminacion;
-    private Usuario usuario; // Asumiendo que tienes un modelo Usuario
+    private Usuario usuario;
     private Usuario amigo;
 
     // Getters y setters

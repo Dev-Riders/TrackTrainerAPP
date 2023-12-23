@@ -1,67 +1,72 @@
 package dev.devriders.tracktrainer.models;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Ejercicio {
-    private String nombre_ejercicio;
-    private String tipo_ejercicio;
-    private String imagen_ejercicio;
-    private String video_ejercicio;
-    private String descripcion_ejercicio;
-    private int id_ejercicio;
+    private String nombreEjercicio;
+    private String imagenEjercicio;
+    private String videoEjercicio;
+    private String descripcionEjercicio;
+    private int idEjercicio;
 
-    public Ejercicio(String nombre_ejercicio, String tipo_ejercicio, String imagen_ejercicio, String video_ejercicio, String descripcion_ejercicio, int id_ejercicio) {
-        this.nombre_ejercicio = nombre_ejercicio;
-        this.tipo_ejercicio = tipo_ejercicio;
-        this.imagen_ejercicio = imagen_ejercicio;
-        this.video_ejercicio = video_ejercicio;
-        this.descripcion_ejercicio = descripcion_ejercicio;
-        this.id_ejercicio = id_ejercicio;
+    private Categoria categorias;
+
+
+    public Ejercicio(String nombreEjercicio, String imagenEjercicio, String videoEjercicio, String descripcionEjercicio, int idEjercicio, Categoria categorias) {
+        this.nombreEjercicio = nombreEjercicio;
+        this.imagenEjercicio = imagenEjercicio;
+        this.videoEjercicio = videoEjercicio;
+        this.descripcionEjercicio = descripcionEjercicio;
+        this.idEjercicio = idEjercicio;
+        this.categorias = categorias;
     }
 
-    public String getNombre_ejercicio() {
-        return nombre_ejercicio;
+    public String getNombreEjercicio() {
+        return nombreEjercicio;
     }
 
-    public void setNombre_ejercicio(String nombre_ejercicio) {
-        this.nombre_ejercicio = nombre_ejercicio;
+    public void setNombreEjercicio(String nombreEjercicio) {
+        this.nombreEjercicio = nombreEjercicio;
     }
 
-    public String getTipo_ejercicio() {
-        return tipo_ejercicio;
+    public String getImagenEjercicio() {
+        return imagenEjercicio;
     }
 
-    public void setTipo_ejercicio(String tipo_ejercicio) {
-        this.tipo_ejercicio = tipo_ejercicio;
+    public void setImagenEjercicio(String imagenEjercicio) {
+        this.imagenEjercicio = imagenEjercicio;
     }
 
-    public String getImagen_ejercicio() {
-        return imagen_ejercicio;
+    public String getVideoEjercicio() {
+        return videoEjercicio;
     }
 
-    public void setImagen_ejercicio(String imagen_ejercicio) {
-        this.imagen_ejercicio = imagen_ejercicio;
+    public void setVideoEjercicio(String videoEjercicio) {
+        this.videoEjercicio = videoEjercicio;
     }
 
-    public String getVideo_ejercicio() {
-        return video_ejercicio;
+    public String getDescripcionEjercicio() {
+        return descripcionEjercicio;
     }
 
-    public void setVideo_ejercicio(String video_ejercicio) {
-        this.video_ejercicio = video_ejercicio;
+    public void setDescripcionEjercicio(String descripcionEjercicio) {
+        this.descripcionEjercicio = descripcionEjercicio;
     }
 
-    public String getDescripcion_ejercicio() {
-        return descripcion_ejercicio;
+    public int getIdEjercicio() {
+        return idEjercicio;
     }
 
-    public void setDescripcion_ejercicio(String descripcion_ejercicio) {
-        this.descripcion_ejercicio = descripcion_ejercicio;
+    public void setIdEjercicio(int idEjercicio) {
+        this.idEjercicio = idEjercicio;
     }
 
-    public int getId_ejercicio() {
-        return id_ejercicio;
+    public Categoria getCategorias() {
+        return categorias;
     }
 
-    public void setId_ejercicio(int id_ejercicio) {
-        this.id_ejercicio = id_ejercicio;
+    public void setCategorias(Categoria categorias) {
+        this.categorias = categorias;
     }
 }

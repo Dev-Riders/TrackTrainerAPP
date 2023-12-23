@@ -35,6 +35,7 @@
 
         <!-- Título para el vídeo -->
         <TextView
+            android:id="@+id/videoTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Vídeo de referencia"
@@ -42,14 +43,32 @@
             android:layout_marginTop="16dp"/>
 
         <!-- Video Placeholder -->
-        <ImageView
+        <VideoView
+            android:id="@+id/exerciseVideo"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/backgroundwelcome" />
+            android:layout_marginTop="8dp" />
+
+        <!-- Título para la descripción -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Descripción"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"/>
+
+        <!-- Descripción del ejercicio -->
+        <TextView
+            android:id="@+id/textViewDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Descripción del ejercicio"
+            android:layout_marginTop="8dp" />
+
 
         <!-- Título para datos numéricos -->
         <TextView
+            android:id="@+id/textViewDescripcionDistancia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Datos numéricos"
@@ -123,6 +142,7 @@
 
         <!-- Título para repeticiones -->
         <TextView
+            android:id="@+id/textViewDescripcionRepeticion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Repeticiones"

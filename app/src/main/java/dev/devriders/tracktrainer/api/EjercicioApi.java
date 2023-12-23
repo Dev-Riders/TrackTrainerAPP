@@ -13,4 +13,12 @@ public interface EjercicioApi {
     @GET("/api/ejercicios/{id}/id-ejercicio")
     Call<Ejercicio> getEjercicioById(@Path("id") int id);
 
+    @GET("/api/ejercicios/{id}/imagen")
+    Call<Ejercicio> getEjercicioImageById(@Path("id") int id);
+
+    @GET("/api/ejercicios/{id}/video")
+    Call<Ejercicio> getEjercicioVideoById(@Path("id") int id);
+
+    @GET("/api/ejercicios/{id}/categorias")
+    Call<Ejercicio> getAllCategoriasByEjercicioId(@Path("id") int id);
 }

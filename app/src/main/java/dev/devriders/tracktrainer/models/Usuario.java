@@ -1,7 +1,7 @@
 package dev.devriders.tracktrainer.models;
 
 public class Usuario {
-    private int id;
+    private Long id;
     private String nombre;
     private String apellido;
     private String nickname;
@@ -18,10 +18,16 @@ public class Usuario {
     private String quienElimino;
     private String fechaActualizacion;
     private String quienActualizo;
+    private boolean suscrito;
+
+    public Usuario(Long idUsuarioActual) {
+        this.id = idUsuarioActual;
+        this.suscrito = false;
+    }
 
     // Getters y setters
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
@@ -70,4 +76,7 @@ public class Usuario {
 
     public String getQuienActualizo() { return quienActualizo; }
     public void setQuienActualizo(String quienActualizo) { this.quienActualizo = quienActualizo; }
+    public boolean isSuscrito() { return suscrito; }
+
+    public void setSuscrito(boolean suscrito) { this.suscrito = suscrito; }
 }

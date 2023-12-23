@@ -18,9 +18,11 @@ public class Usuario {
     private String quienElimino;
     private String fechaActualizacion;
     private String quienActualizo;
+    private boolean suscrito;
 
     public Usuario(Long idUsuarioActual) {
-        this.id = idUsuarioActual; // Asigna el valor pasado al constructor
+        this.id = idUsuarioActual;
+        this.suscrito = false;
     }
 
     // Getters y setters
@@ -74,4 +76,7 @@ public class Usuario {
 
     public String getQuienActualizo() { return quienActualizo; }
     public void setQuienActualizo(String quienActualizo) { this.quienActualizo = quienActualizo; }
+    public boolean isSuscrito() { return suscrito; }
+
+    public void setSuscrito(boolean suscrito) { this.suscrito = suscrito; }
 }
